@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Портфолио</title>
+    <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <h1 class="header__title">Контакты</h1>
+            <button class="theme-switcher" id="themeSwitcher">
+                <span class="theme-switcher__icon">🌙</span>
+                <span class="theme-switcher__text">Тёмная тема</span>
+            </button>
+        </header>
+
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a class="nav__link" href="../index.html">Главная</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="news.html">Новости</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="practices.html">Практики</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="goods.html">Товары</a>
+                </li>
+                <li class="nav__item nav__item--active">
+                    <a class="nav__link" href="contacts.html">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+        <main class="main">
+            <section class="contacts">
+                <h2 class="contacts__title">Свяжитесь со мной</h2>
+                <div class="contacts__list">
+                    <div class="contact-item">
+                        <h3 class="contact-item__title">Email</h3>
+                        <div class="contact-item__value">gall.e.a@edu.mirea.ru</div>
+                    </div>
+                    <div class="contact-item">
+                        <h3 class="contact-item__title">Телефон</h3>
+                        <div class="contact-item__value">+7-929-573-72-44</div>
+                    </div>
+                    <div class="contact-item">
+                        <h3 class="contact-item__title">Telegram</h3>
+                        <div class="contact-item__value">@elizavetagall</div>
+                    </div>
+                    <div class="contact-item">
+                        <h3 class="contact-item__title">GitHub</h3>
+                        <div class="contact-item__value"><a href="https://github.com/gallelizabeth">gallelizabeth</a></div>
+                    </div>
+                    <button class="product__button" onclick="contactModal.showModal()">Связаться с нами</button>
+                </div>
+            </section>
+        </main>
+        <dialog id="contactModal">
+             <div class="modal-header">
+                <h2>Форма обратной связи</h2>
+            </div>
+            <div class="modal-content">
+                <form id="feedbackForm" method="dialog">
+                    <div class="form-group">
+                        <label for="name">Имя <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Электронная почта <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Категория обращения <span class="required">*</span></label>
+                        <select id="category" name="category" required>
+                            <option value="">Выберите категорию</option>
+                            <option value="technical">Техническая поддержка</option>
+                            <option value="commercial">Коммерческое предложение</option>
+                            <option value="cooperation">Сотрудничество</option>
+                            <option value="complaint">Жалоба</option>
+                            <option value="suggestion">Предложение</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Текст обращения <span class="required">*</span></label>
+                        <textarea id="message" name="message" required placeholder="Опишите вашу проблему или вопрос..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">Отмена</button>
+                        <button type="button" class="btn btn-primary" onclick="submitForm()">Отправить</button>
+                    </div>
+                 </form>
+             </div>
+        </dialog>
+            <script>
+                function submitForm() {
+                    const form = document.getElementById('feedbackForm');
+                    const formData = new FormData(form);
+                    if (!form.checkValidity()) {
+                        form.reportValidity();
+                        return;
+                    }
+                    const data = {
+                        name: formData.get('name'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email'),
+                        category: formData.get('category'),
+                        message: formData.get('message')
+                    };
+                    console.log('Данные формы:', data);
+                    alert('Спасибо! Ваше обращение отправлено. Мы свяжемся с вами в ближайшее время.');
+                    contactModal.close();
+                    form.reset();
+                }
+                document.getElementById('contactModal').addEventListener('click', function(event) {
+                    if (event.target === this) {
+                        this.close();
+                    }
+                });
+                document.getElementById('feedbackForm').addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter' && event.target.type !== 'textarea') {
+                        event.preventDefault();
+                    }
+                });
+                document.getElementById('cancelBtn').addEventListener('click', function() {
+                const modal = document.getElementById('contactModal');
+                modal.close();
+                });
+            </script>
+            <script>
+            const themeButton = document.getElementById('theme-toggle');
+            themeButton.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+            });
+            const modal = document.getElementById('contactModal');
+            const cancelBtn = document.getElementById('cancelBtn');
+            cancelBtn.addEventListener('click', () => modal.close());
+        </script>
+        </div>
+        <footer class="footer">
+            <p class="footer__text">&copy; 2024 Мой сайт</p>
+        </footer>
+    </div>
+    <script src="../js/theme-switcher.js"></script>
+</body>
+    <style>
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+            justify-items: center;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            max-width: 500px;
+            width: 90vw;
+            max-height: 100vh;
+            overflow-y: auto;
+            justify-self: center;
+            background: #ffffff;
+            color: #2c3e50;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            margin: 0;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .modal-content {
+            padding: 2rem;
+            background: #ffffff;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+            background: #ffffff;
+            color: #2c3e50;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 2px solid #e9ecef;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+        
+        [data-theme="dark"] dialog {
+            background: #2d2d2d;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        [data-theme="dark"] .modal-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .modal-content {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .form-group label {
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .form-group input,
+        [data-theme="dark"] .form-group select,
+        [data-theme="dark"] .form-group textarea {
+            background: #383636;
+            color: #ffffff;
+            border: 2px solid #4a4a4a;
+        }
+
+        [data-theme="dark"] .form-group input::placeholder,
+        [data-theme="dark"] .form-group textarea::placeholder {
+            color: #b0b0b0;
+        }
+
+        [data-theme="dark"] .form-group input:focus,
+        [data-theme="dark"] .form-group select:focus,
+        [data-theme="dark"] .form-group textarea:focus {
+            border-color: #667eea;
+            background: #404040;
+        }
+
+        [data-theme="dark"] .btn-secondary {
+            background: #404040;
+            color: #ffffff;
+            border: 2px solid #4a4a4a;
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            background: #4a4a4a;
+        }
+
+        [data-theme="dark"] .required {
+            color: #ff6b6b;
+        }
+
+        [data-theme="dark"] .form-group select {
+            background: #383636 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") no-repeat right 0.75rem center/16px 12px;
+        }
+
+        [data-theme="dark"] .form-group select option {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            dialog {
+                margin: 1rem;
+                width: calc(100vw - 2rem);
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</html>

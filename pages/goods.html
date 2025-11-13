@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары - Портфолио</title>
+    <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <h1 class="header__title">Товары</h1>
+            <button class="theme-switcher" id="themeSwitcher">
+                <span class="theme-switcher__icon">🌙</span>
+                <span class="theme-switcher__text">Тёмная тема</span>
+            </button>
+        </header>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a class="nav__link" href="../index.html">Главная</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="news.html">Новости</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="practices.html">Практики</a>
+                </li>
+                <li class="nav__item nav__item--active">
+                    <a class="nav__link" href="goods.html">Товары</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="contacts.html">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main">
+            <section class="products">
+                <h2 class="products__title">Каталог товаров</h2>
+                <div class="products__grid">
+                    <div class="product-card">
+                        <div class="product__image--container">
+                            <img class="product-card__image" src="../images/strb_box.jpg" alt="Клубника - сердечко">
+                        </div>
+                        <h3 class="product-card__title">Клубничное сердечко</h3>
+                        <p class="product-card__desc">Коробочка в виде сердечка с клубникой в шоколадной глазурию. Романичный подок второй половинки</p>
+                        <div class="product-card__price">3 600 ₽</div>
+                        <button class="product-card__button">В корзину</button>
+                    </div>
+                    <div class="product-card">
+                        <div class="product__image--container">
+                            <img class="product-card__image" src="../images/strb_buket.jpg" alt="Коробка с клубникой ассорти">
+                        </div>
+                        <h3 class="product-card__title">Клубничная коробка</h3>
+                        <p class="product-card__desc">Небольшая коробочка с клубникой в шоколадной глазури. Отлично подходит для скромного, но приятного подарка</p>
+                        <div class="product-card__price">7 500 ₽</div>
+                        <button class="product-card__button">В корзину</button>
+                    </div>
+                    <div class="product-card product-card--discount">
+                        <div class="product__image--container">
+                            <img class="product-card__image" src="../images/strb_heard.jpg" alt="Клубничный букет   ">
+                        </div>
+                        <h3 class="product-card__title">Клубничный букет</h3>
+                        <p class="product-card__desc">Букет и клубники в шоколадной глазури. Отлично подходит для эффектного подарка вашей любимой</p>
+                        <div class="product-card__price strikethrough">24 990 ₽</div>
+                        <p class="product-card__price ">12 990 ₽</p>
+                        <div class="product-card__discount">-50%</div>
+                        <button class="product-card__button">В корзину</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__text">&copy; 2025 Мой сайт</p>
+        </footer>
+    </div>
+    <script src="../js/theme-switcher.js"></script>
+</body>
+</html>
